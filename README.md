@@ -1,6 +1,6 @@
 # TicTacToe to Learn Scala
 
-This code was strongly influenced by [http://www.nickknowlson.com/blog/2013/03/28/seven-languages-week-4-day-1/](Nick Knowlson's Blog Post).
+This code was strongly influenced by [Nick Knowlson's Blog Post](http://www.nickknowlson.com/blog/2013/03/28/seven-languages-week-4-day-1/).
 His code was pretty cool, and I have dumbed it down a little so, for example, it only supports a 3x3 version of the game.
 
 I don't think I am violating any copyright, but if anyone objects, please let me know and I'll nuke the repo.
