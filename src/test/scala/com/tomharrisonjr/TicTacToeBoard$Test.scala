@@ -1,4 +1,4 @@
-package com.tom
+package com.tomharrisonjr
 
 import org.scalatest._
 
