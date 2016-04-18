@@ -52,10 +52,10 @@ class TicTacToeBoard(board: Array[Array[Player]]) {
           // non-local return!
           case X => GameResult.X
           case O => GameResult.O
-          // don't thing these other cases would be needed if we validated input at constructor
+          // don't think these other cases would be needed if we validated input at constructor
           case other => throw new Exception("Error, '" + other + "' is not a player.")
         }
-        case None => // do nothing
+        case None => // do nothing, that is don't return from the method from which this val is executed
       }
     }
 
