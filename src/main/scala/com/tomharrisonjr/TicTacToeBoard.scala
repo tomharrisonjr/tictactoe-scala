@@ -75,24 +75,33 @@ class TicTacToeBoard(board: Array[Array[Player]]) {
     GameResult.Draw
   }
 
+  // Seems to me that this uses the fanciest, most spectacular way of printing a board humanly possible
+  // Next refactor: do it in, um, fewer lines and more efficiently
   override def toString: String = {
+    // guessing this should be a StringBuilder?
     var boardRepresentation = ""
 
+    // Method that builds up the labels and grid of a board
     def p = { str: String => boardRepresentation = boardRepresentation.concat(str + "\n") }
 
+    // I am not sure what acc is.  Is this currying?
     val topLine = (1 until columnCount).foldLeft("   ┌")((acc, c) => acc.concat("───┬")).concat("───┐")
     val middleLine = (0 until columnCount).foldLeft("   │")((acc, c) => acc.concat("───│"))
     val bottomLine = (1 until columnCount).foldLeft("   └")((acc, c) => acc.concat("───┴")).concat("───┘")
 
     p("")
+    // column labels, e.g. A, B C
     p((0 until columnCount).foldLeft("     ")((acc, n) => acc.concat("%-4s".format(TicTacToeBoard.numToAlpha(n)))))
+    // top gridline
     p(topLine)
+    // contents of each row, including row number, gridline and played values
     for (r <- 0 until rowCount) {
       var rowString = "%-3d".format(r).concat("│")
       for (c <- 0 until columnCount) {
         rowString = rowString.concat(" %s │".format(board(r)(c)))
       }
       p(rowString)
+      // gridline between
       if (r < rowCount - 1) {
         p(middleLine)
       }
@@ -104,6 +113,7 @@ class TicTacToeBoard(board: Array[Array[Player]]) {
   }
 
   def validMove(row: Int, col: Int): Boolean = {
+    // Not sure why board(row)(col) vs board(row,col).  Maybe currying is cooler?
     row < rowCount && row >= 0 && col < columnCount && col >= 0 && board(row)(col) == Blank
   }
 
@@ -118,6 +128,8 @@ class TicTacToeBoard(board: Array[Array[Player]]) {
 
 object TicTacToeBoard {
 
+  // ok, so here we seem to be doing more than needed.  Like, for example, if 1 returns A maybe this function is
+  // just (65 + number).toChar.
   def numToAlpha(number: Int): String = {
     var dividend = number + 1 // internally, treat 1 as A - just makes it easier
     var letters = ""
